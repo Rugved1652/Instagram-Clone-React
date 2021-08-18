@@ -29,6 +29,8 @@
 .post__commentbox{
     display: flex;
     margin-top: 10px;
+    /* justify-content: center; */
+    margin-left: 10px !important;
 }
 
 .post__input{
@@ -47,9 +49,7 @@
     color: #6082a3;
     border-top: 1px solid lightgray;
 }
-.post__comments{
-    padding: 20px;
-}
+
 
 
 

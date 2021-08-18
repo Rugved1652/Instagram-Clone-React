@@ -22,11 +22,14 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: 400,
+    maxWidth:400,
+    width: '100%',
+    justifyContent:'center',
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    // margin: theme.spacing(4, 4, 4),
   },
 }));
 
@@ -60,7 +63,11 @@ function App() {
         //if user has logged out...
         setUser(null);
       }
-    });
+      
+    })
+    return()=>{
+      unsubscribe();
+    }
   }, [user, username]);
 
   useEffect(() => {
@@ -78,12 +85,13 @@ function App() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        authUser.user.updateProfile({
-          displayName: username,
+        return authUser.user.updateProfile({
+          displayName: username
         });
       })
       .catch((error) => alert(error.message));
-  };
+      setOpen(false);
+    };
   const signIn = (event) => {
     event.preventDefault();
     auth
@@ -131,7 +139,7 @@ function App() {
         </div>
       </Modal>
       {/* <h1>hey we are going to make an instagram clone</h1> */}
-      <Modal open={openSignIn} onClose={() => setOpen(false)}>
+      <Modal open={openSignIn} onClose={() => setopenSignIn(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
             <center>
@@ -195,7 +203,7 @@ function App() {
       {user?.displayName ? (
         <ImageUploader username={user.displayName} />
         ) : (
-          <h2>sorry you need to log in to upload </h2>
+          <h2>Log In to upload and comment </h2>
           )}
           </div>
     </div>

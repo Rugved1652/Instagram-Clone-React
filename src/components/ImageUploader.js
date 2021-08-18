@@ -56,9 +56,9 @@ function ImageUploader({username}) {
   return (
     <div className="imageUpload">
         <progress className="imageupload__progressbar" value={progress} max="100"/>
-        <label  className="custom-file-upload">Choose File
+        
           <input type="file" className="choosefilebutton"onChange={handleChange} />
-        </label>
+        
       <input
         type="text"
         placeholder="Write a caption...."
